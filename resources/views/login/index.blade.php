@@ -69,17 +69,18 @@
   <body class="text-center">
     
 <div class="form-signin w-100 m-auto">
-  <form>
+  <form class="/login" method="post">
+    @csrf
     <img class="mb-4" src="/images/logosisima.png" alt="" width="120" height="60">
     <h4 class="h5 mb-3 fw-normal">Please Login</h4>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+      <input type="text" name="username" class="form-control" id="username" placeholder="Username" autofocus required>
+      <label for="username">Username</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+      <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+      <label for="password">Password</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Login</button>
   </form>

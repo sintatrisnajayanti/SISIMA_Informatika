@@ -68,7 +68,8 @@
   <body class="text-center">
     
 <div class="form-signin w-100 m-auto">
-  <form>
+  <form action="/register" method="post">
+    @csrf
     <img class="mb-4" src="/images/logosisima.png" alt="" width="120" height="60">
     <h4 class="h5 mb-3 fw-normal">Registration Form</h4>
     <div class="form-floating">
@@ -80,8 +81,8 @@
       <label for="username">Username</label>
     </div>
     <div class="form-floating">
-      <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+      <input type="text" name="nim" class="form-control" id="nim" placeholder="NIM">
+      <label for="nim">NIM</label>
     </div>
     <div class="form-floating">
       <input type="password" name="password" class="form-control" id="password" placeholder="Password">
