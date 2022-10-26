@@ -92,26 +92,40 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/browsing">
-                  <span data-feather="file" class="align-text-bottom"></span>
+                  <span data-feather="globe" class="align-text-bottom"></span>
                   Browsing
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/searching">
                   <span
-                    data-feather="shopping-cart"
+                    data-feather="search"
                     class="align-text-bottom"
                   ></span>
                   Searching
                 </a>
+              </li>
+              <li>
+                <form action="/logout" method="post">
+                  @csrf
+                  <div class="d-flex justify-content-center" style="margin-top: 360px">
+                  <button class="btn btn-primary">
+                    Logout  <span
+                    data-feather="log-out"
+                    class="align-text-bottom"
+                  ></span>
+                  </button>
+                  </div>
+                </form>
               </li>
             </ul>
           </div>
         </nav>
         <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="pt-3 pb-2 mb-3 border-bottom">  
-          
-          <h2>{{ $title }}</h2>
+          <div>
+          <h2>{{ $title }} </h2> 
+          </div>
           </div>
               @yield('container')
             </div>

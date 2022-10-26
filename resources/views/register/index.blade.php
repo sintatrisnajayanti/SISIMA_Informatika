@@ -73,20 +73,40 @@
     <img class="mb-4" src="/images/logosisima.png" alt="" width="120" height="60">
     <h4 class="h5 mb-3 fw-normal">Registration Form</h4>
     <div class="form-floating">
-      <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+      <input type="text" name="name" class="form-control rounded-top @error('name') is-invalid @enderror" id="name" placeholder="Name"  required value="{{ old('name') }}">
       <label for="name">Name</label>
+      @error('name')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
     <div class="form-floating">
-      <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" required value="{{ old('username') }}">
       <label for="username">Username</label>
+      @error('username')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
     <div class="form-floating">
-      <input type="text" name="nim" class="form-control" id="nim" placeholder="NIM">
+      <input type="text" name="nim" class="form-control @error('nim') is-invalid @enderror" id="nim" placeholder="NIM"  required value="{{ old('nim') }}">
       <label for="nim">NIM</label>
+      @error('nim')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
     <div class="form-floating">
-      <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+      <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password"  required > 
       <label for="password">Password</label>
+      @error('password')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
     <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Register</button>
   </form>

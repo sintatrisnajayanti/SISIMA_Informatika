@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', [PostController::class, 'index']); 
+Route::get('/dashboard', [PostController::class, 'index'])->middleware('auth'); 
 Route::get('/detailskripsi/{slug}', function ($slug) {
     $posts_skripsi =[
         [
@@ -84,7 +85,8 @@ Route::get('/searching', function () {
     ]);
 });
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class,'authenticate']);
+Route::post('/logout', [LoginController::class,'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);

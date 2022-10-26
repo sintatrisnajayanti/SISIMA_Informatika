@@ -67,16 +67,29 @@
     <link href="/css/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    
 <div class="form-signin w-100 m-auto">
   <form class="/login" method="post">
     @csrf
     <img class="mb-4" src="/images/logosisima.png" alt="" width="120" height="60">
     <h4 class="h5 mb-3 fw-normal">Please Login</h4>
-
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('success')}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if(session('loginError'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ session('loginError')}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <div class="form-floating">
-      <input type="text" name="username" class="form-control" id="username" placeholder="Username" autofocus required>
+      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="Username" autofocus requiredvalue="{{ old('username') }}">
       <label for="username">Username</label>
+      @error('email')
+    <div class="invalid-feedback">{{ $message }}</div>
+      @enderror
     </div>
     <div class="form-floating">
       <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
