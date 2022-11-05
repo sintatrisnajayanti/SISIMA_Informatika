@@ -8,29 +8,37 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Total Data</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">300</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row">
-    @foreach ($posts as $post)
-        <div class="col-sm-6 mb-3" >
-          <div class="card">
-            <div class="card-body">
-              <h6 class="card-title">{{ $post["judul"] }}</h6>
-              <p class="card-text">{{ $post["nama"] }}.</p>
-              <div class="d-flex justify-content-center">
-              <a href="/detailskripsi/{{ $post["slug"] }}" class="btn btn-primary ">Detail</a>
-            </div>
-        </div>
-     </div>
-</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Judul Penelitian</th>
+        <th scope="col">Nama Mahasiswa</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    @foreach ($list_skripsi as $index => $skripsi)
+    <tr>
+        <th scope="row">{{ $index+1 }}</th>
+        <td>{{ $skripsi['judul'] }}</td>
+        <td>{{ $skripsi['penulis']}}</td>
+        <td>
+            <a type="button" class="btn btn-primary" href="/detail/{{ $skripsi['id'] }}">Detail</a>
+        </td>
+      </tr>
+        
+    @endforeach
+
+    </tbody>
+  </table>
 
     
-@endforeach
-  
-   
 @endsection

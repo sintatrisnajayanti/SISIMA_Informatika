@@ -122,7 +122,14 @@
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                 <a class="nav-link" href="#about">About</a>
                 <a class="nav-link" href="#features">Features</a>
-                <a class="nav-link" href="/login"><i class="bi bi-box-arrow-right"></i> Login</a>
+                @if(Auth::user() == null)
+                    <a class="nav-link" href="/login"><i class="bi bi-box-arrow-right"></i> Login</a>
+                @else
+                <form action="/logout" method="post">
+                    @csrf
+                    <button style="border: 0" class="nav-link bg-white" type="submit"><i class="bi bi-box-arrow-left"></i> Logout</button>
+                </form>
+                @endif
             </div>
             </div>
         </div>

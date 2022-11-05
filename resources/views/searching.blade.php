@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-group mb-3" >
-                        <label class="input-group-text">Tahun</label>
+                        <label class="input-group-text">Tahun Angkatan</label>
                         <select class="form-select" aria-label="Default select example" id="cariTahun" name="cariTahun">
                             <option value="">Pilihlah salah satu</option>
                            
@@ -38,23 +38,28 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
                     <div class="input-group mb-3">
-                        <label class="input-group-text">Topik Permasalahan</label>
-                        <select class="form-select" aria-label="Default select example"id="cariTopikPermasalahan" name="cariTopikPermasalahan">
+                        <label class="input-group-text">Jangka Waktu Penelitian</label>
+                        <select class="form-select" aria-label="Default select example"id="cariJangkaWaktu" name="cariJangkaWaktu">
                             <option value="">Pilihlah salah satu</option>
                             
                         </select>
                     </div>
                 </div>    
+                <div class="col-md-6">
+                    <div class="input-group mb-6">
+                        <label class="input-group-text">Metode</label>
+                        <input type="text" class="form-control" id="cariMetode" name="cariMetode">
+                    </div>
+                </div>
+            </div>
             <div>
                 <input type="submit" name="cariSpesifikasi" value="Cari" class="btn btn-primary">
                 <input type="submit" name="reset" value="Reset" class="btn btn-danger">
             </div>
-            </div>
+          
         </form>
     </div>
-   
+</div>
 @endsection
