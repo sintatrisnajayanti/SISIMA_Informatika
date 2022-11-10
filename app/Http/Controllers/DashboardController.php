@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         try {
-            $skripsi = $this->sparql->query('SELECT * WHERE { ?judul a sk:judul_skripsi ; sk:ditulis ?penulis } LIMIT 10');
+            $skripsi = $this->sparql->query('SELECT * WHERE { ?judul a sk:judul_skripsi ; sk:ditulis ?penulis }');
             $total = $this->sparql->query(' SELECT (count(?skripsi) as ?jumlahSkripsi) WHERE { ?skripsi a sk:judul_skripsi } ');
              
             $daftarSkripsi = [];

@@ -11,6 +11,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+  
 
     <style>
       .bd-placeholder-img {
@@ -64,7 +65,7 @@
         -webkit-overflow-scrolling: touch;
       }
     </style>
-    <link href="css/dashboard.css" rel="stylesheet" />
+    <link href={{ asset('css/dashboard.css') }} rel="stylesheet" />
   </head>
   <body>
     <div class="container-fluid">
@@ -75,7 +76,7 @@
           style="background-color: #8bbccc"
         >
           <img class="my-3"
-            src="images/logosisima.png"
+            src="{{ asset('images/logosisima.png') }}"
             style=" witdh: 160px; height:50px; margin-left: 20px; margin-right: 20px"
             alt="..."
           />
@@ -132,6 +133,7 @@
         </div>
       </div>
     </div>
+  
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -152,6 +154,6 @@
       integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
       crossorigin="anonymous"
     ></script>
-    <script src="js/dashboard.js"></script>
+    <script src={{ asset('js/dashboard.js') }}></script>
   </body>
 </html>

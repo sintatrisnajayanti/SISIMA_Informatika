@@ -10,15 +10,20 @@
                         <label class="input-group-text">Penjurusan</label>
                         <select class="form-select" aria-label="Default select example" id="cariJususan" name="cariJususan">
                             <option value="">Pilihlah salah satu</option>
+                            @foreach($list['listPenjurusan'] as $item)
+                                <option value="{{ $item['jalur'] }}">{{ str_replace('_',' ',$item['jalur'])}} </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-group mb-3" >
-                        <label class="input-group-text">Tahun Angkatan</label>
+                        <label class="input-group-text">Mahasiswa Angkatan</label>
                         <select class="form-select" aria-label="Default select example" id="cariTahun" name="cariTahun">
                             <option value="">Pilihlah salah satu</option>
-                           
+                            @foreach($list['listAngkatan'] as $item)
+                                    <option value="{{ $item['angkatan'] }}">{{$item['angkatan']}} </option>
+                                 @endforeach
                         </select>
                     </div>
                 </div>
@@ -27,6 +32,9 @@
                         <label class="input-group-text">Dosen Pembimbing 1</label>
                         <select class="form-select" aria-label="Default select example"id="cariDosenPembimbing1" name="cariDosenPembimbing1">
                             <option value="">Pilihlah salah satu</option>
+                               @foreach($list['listDosen'] as $item)
+                                    <option value="{{ $item['dosen'] }}">{{ str_replace('_',' ',$item['dosen'])}} </option>
+                                 @endforeach
                         </select>
                     </div>
                 </div>
@@ -35,6 +43,9 @@
                         <label class="input-group-text">Dosen Pembimbing 2</label>
                         <select class="form-select" aria-label="Default select example"id="cariDosenPembimbing2" name="cariDosenPembimbing2">
                             <option value="">Pilihlah salah satu</option>
+                            @foreach($list['listDosen'] as $item)
+                                <option value="{{ $item['dosen'] }}">{{ str_replace('_',' ',$item['dosen'])}} </option>
+                             @endforeach
                         </select>
                     </div>
                 </div>

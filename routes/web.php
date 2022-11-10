@@ -1,11 +1,16 @@
 <?php
 
 use App\Models\Post;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DospemController;
+use App\Http\Controllers\AngkatanController;
+use App\Http\Controllers\BrowsingController;
 use App\Http\Controllers\RegisterController;
-use GuzzleHttp\Middleware;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SearchingController;
+use App\Http\Controllers\PenjurusanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,17 +33,21 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::get('/detail/{judul}', [DashboardController::class, 'detail'])->middleware('auth'); 
 
 
-Route::get('/browsing', function () {
-    return view('browsing', [
-        "title" => "Browsing",
-    ]);
-});
+Route::get('/browsing', [BrowsingController::class, 'browsing'])->middleware('auth'); 
 
-Route::get('/searching', function () {
-    return view('searching', [
-        "title" => "Searching",
-    ]);
-});
+
+Route::get('/penjurusan', [PenjurusanController::class, 'listPenjurusan'])->name('daftarpenjurusan')->middleware('auth');
+Route::get('/penjurusan/{penjurusan}', [PenjurusanController::class, 'detailPenjurusan'])->name('detailpenjurusan')->middleware('auth');
+
+
+Route::get('/dospem', [DospemController::class, 'listDospem'])->name('daftardospem')->middleware('auth');
+Route::get('/dospem/{dosenpembimbing}', [DospemController::class, 'detailDospem'])->name('detaildospem')->middleware('auth');
+
+
+Route::get('/angkatan', [AngkatanController::class, 'listAngkatan'])->name('daftarangkatan')->middleware('auth');
+Route::get('/angkatan/{angkatan}', [AngkatanController::class, 'detailAngkatan'])->name('detailangkatan')->middleware('auth');
+
+Route::get('/searching', [SearchingController::class, 'searching']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class,'authenticate']);
