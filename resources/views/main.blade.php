@@ -16,6 +16,7 @@
         }
         body {
             font-family: 'Merriweather', serif;
+            overflow-x: hidden;
         }
         #nav a:hover {
             font-weight: bold;
@@ -112,7 +113,7 @@
     <nav class="navbar navbar-expand-lg navbar-light" id="home">
         <div class="container">
             <a href="/">
-                <img src="images/logosisima.png" style="width: 160px; height:50px" alt="...">
+                <img src="{{ asset('images/logosisima.png') }} "style="width: 160px; height:50px" alt="...">
             </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -142,21 +143,21 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-        <img src="images/skripsi.jpg" style="width: 1820px; height:620px" alt="...">
+        <img src="{{ asset('images/perpus.jpg') }}" style="width: 1440px; height:620px" alt="Perpustakaan Informatika">
         <div class="carousel-caption d-none d-md-block">
             <h2>SISIMA Informatika</h2>  
             <p>Sistem Informasi Skripsi Mahasiswa Informatika Universitas Udayana</p>
         </div>
         </div>
         <div class="carousel-item">
-        <img src="images/perpus.jpg" style="width: 1820px; height:620px"alt="...">
+        <img src="{{ asset('images/membacabuku.jpg') }}" style="width: 1440px; height:620px"alt="Mahasiswa Membaca Skripsi">
         <div class="carousel-caption d-none d-md-block">
             <h2>Fitur yang tersedia</h2>
             <p>Pengguna dapat memanfaatkan fitur Browsing dan Searching</p>
         </div>
         </div>
         <div class="carousel-item">
-        <img src="images/skripsi.jpg" style="width: 1820px; height:620px" alt="...">
+        <img src="{{ asset('images/skripsi.jpg') }}" style="width: 1440px; height:620px" alt="Skripsi Mahasiswa">
         <div class="carousel-caption d-none d-md-block">
             <h2>Easy to Find Information</h2>
             <p>Sistem ini dapat memudahkan anda dalam pencarian informasi skripsi mahasiswa</p>
@@ -188,7 +189,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12 ">
                             <div class="card">
-                                <img src="images/browsing.png" class="card-img-top"  alt="...">
+                                <img src="{{ asset('images/browsing.png') }}" class="card-img-top"  alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Browsing</b></h5>
                                     <p class="card-text">
@@ -201,7 +202,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="card">
-                                <img src="images/searching.png" class="card-img-top" alt="...">
+                                <img src="{{ asset ('images/searching.png') }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Searching</b></h5>
                                     <p class="card-text">Fitur searching merupakan fitur utama dari sistem ini. Dimana pengguna dapat melakukan pencarian 

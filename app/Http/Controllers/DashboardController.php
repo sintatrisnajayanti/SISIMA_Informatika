@@ -19,7 +19,7 @@ class DashboardController extends Controller
             foreach($skripsi as $sk){
                 array_push($daftarSkripsi, [
                     'id' => $this->parseData($sk->judul, true),
-                    'judul' => str_replace('_', ' ',$this->parseData($sk->judul, true)) ,
+                    'judul' => str_replace('_', ' ',$this->parseData($sk->judul, true)),
                     'penulis' =>  str_replace('_', ' ',$this->parseData($sk->penulis, true)),
                 ]);
             }
@@ -31,15 +31,11 @@ class DashboardController extends Controller
             return view('dashboard',[
                 'title' => 'Dashboard',
                 'total' => $totalSkripsi,
-                'list_skripsi' => $daftarSkripsi,
+                'list_skripsi' => $daftarSkripsi 
             ]);
         } catch (Exception $e){
             dd($e);
         }
     }
 
-    public function detail($judul)
-    {
-        dd($judul);
-    }
 }

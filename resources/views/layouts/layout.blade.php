@@ -86,19 +86,19 @@
           >
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/dashboard">
+                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
                   <span data-feather="home" class="align-text-bottom"></span>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/browsing">
+                <a class="nav-link {{ Request::is('browsing') ? 'active' : '' }}" href="/browsing">
                   <span data-feather="globe" class="align-text-bottom"></span>
                   Browsing
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/searching">
+                <a class="nav-link {{ Request::is('searching') ? 'active' : '' }}" href="/searching">
                   <span
                     data-feather="search"
                     class="align-text-bottom"

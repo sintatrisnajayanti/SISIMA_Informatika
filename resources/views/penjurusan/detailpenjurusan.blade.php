@@ -10,7 +10,7 @@
         <th scope="col">No</th>
         <th scope="col">Judul Penelitian</th>
         <th scope="col">Nama Mahasiswa</th>
-        <th scope="col">Action</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
