@@ -71,7 +71,7 @@
   <form class="/login" method="post">
     @csrf
     <img class="mb-4" src="/images/logosisima.png" alt="" width="120" height="60">
-    <h4 class="h5 mb-3 fw-normal">Please Login</h4>
+    <h4 class="h5 mb-3 fw-normal">Silahkan Login</h4>
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ session('success')}}
@@ -97,7 +97,7 @@
     </div>
     <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Login</button>
   </form>
-  <small class="d-block text-center">Not registered? <a href="/register">Register</a></small>
+  <small class="d-block text-center">Tidak terdaftar? <a href="/register">Register</a></small>
 </div>
 
 

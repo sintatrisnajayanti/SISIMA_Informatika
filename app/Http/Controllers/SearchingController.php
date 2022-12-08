@@ -11,11 +11,13 @@ class SearchingController extends Controller
     {
         $penjurusan = $this->sparql->query('SELECT * WHERE {?jalur a sk:konsentrasi_jalur} ORDER BY ?jalur');
         $dosenpembimbing = $this->sparql->query('SELECT * WHERE {?dosen a sk:dosen_pembimbing} ORDER BY ?dosen');
-        $angkatan = $this->sparql->query('SELECT DISTINCT ?angkatan WHERE { ?mhs a sk:nama_mahasiswa ;sk:mahasiswa_angkatan ?angkatan }');
+        $angkatan = $this->sparql->query('SELECT DISTINCT ?angkatan WHERE { ?mhs a sk:nama_mahasiswa ;sk:mahasiswa_angkatan ?angkatan } ORDER BY (?angkatan)');
+        $topikpermasalahan = $this->sparql->query('SELECT * WHERE {?topik a sk:topik_permasalahan} ORDER BY ?topik');
 
         $resultPenjurusan=[];
         $resultDosen=[];
         $resultAngkatan=[];
+        $resultTopik=[];
 
         foreach($penjurusan as $item){
             array_push($resultPenjurusan, [
@@ -34,25 +36,35 @@ class SearchingController extends Controller
                 'id' => $item->angkatan,
                 'angkatan' => $item->angkatan
             ]);
-        }       
+        } 
+        foreach($topikpermasalahan as $item){
+            array_push($resultTopik, [
+                'id' => explode('#', $item->topik)[1],
+                'topik' => $this->parseData($item->topik->getUri())
+            ]);
+        }         
         
         return view('searching',[
-            'title' => 'Searching',
+            'title' => 'Pencarian',
             'listPenjurusan' => $resultPenjurusan,
             'listDosen' => $resultDosen,
             'listAngkatan' => $resultAngkatan,
+            'listTopik' => $resultTopik,
         ]);
     }
 
     public function searching (Request $request)
     {
+        try {
         $penjurusan = $this->sparql->query('SELECT * WHERE {?jalur a sk:konsentrasi_jalur} ORDER BY ?jalur');
         $dosenpembimbing = $this->sparql->query('SELECT * WHERE {?dosen a sk:dosen_pembimbing} ORDER BY ?dosen');
-        $angkatan = $this->sparql->query('SELECT DISTINCT ?angkatan WHERE { ?mhs a sk:nama_mahasiswa ;sk:mahasiswa_angkatan ?angkatan }');
+        $angkatan = $this->sparql->query('SELECT DISTINCT ?angkatan WHERE { ?mhs a sk:nama_mahasiswa ;sk:mahasiswa_angkatan ?angkatan } ORDER BY (?angkatan)');
+        $topikpermasalahan = $this->sparql->query('SELECT * WHERE {?topik a sk:topik_permasalahan} ORDER BY ?topik');
 
         $resultPenjurusan=[];
         $resultDosen=[];
         $resultAngkatan=[];
+        $resultTopik=[];
 
         foreach($penjurusan as $item){
             array_push($resultPenjurusan, [
@@ -71,9 +83,14 @@ class SearchingController extends Controller
                 'id' => $item->angkatan,
                 'angkatan' => $item->angkatan
             ]);
+        } 
+        foreach($topikpermasalahan as $item){
+            array_push($resultTopik, [
+                'id' => explode('#', $item->topik)[1],
+                'topik' => $this->parseData($item->topik->getUri())
+            ]);
         }       
-        // if(isset($_POST['cariSpesifikasi'])){
-        //     $resp = 1;
+
             $sql = "SELECT * WHERE { ";
 
                 if ($request->cariJurusan != '') {
@@ -90,15 +107,16 @@ class SearchingController extends Controller
                     $sql = $sql;
                 }
 
-                if ($request->cariDosenPembimbing1 != '') {
-                    $sql = $sql . " ?judul sk:memiliki_pembimbing1 sk:$request->cariDosenPembimbing1 . ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. ";
+                if ($request->cariDosenPembimbing != '') {
+                    $sql = $sql . " sk:$request->cariDosenPembimbing sk:memiliki_anak_bimbingan ?penulis .  ?penulis sk:menulis ?judul . ";
                 }
                 else{
                 $sql = $sql;
                 }
 
-                if ($request->cariDosenPembimbing2 != '') {
-                    $sql = $sql . " ?judul sk:memiliki_pembimbing2 sk:$request->cariDosenPembimbing2 . ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. ";
+                
+                if ($request->cariTopik != '') {
+                    $sql = $sql . " ?judul sk:memiliki_topik sk:$request->cariTopik .  ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. ";
                 }
                 else{
                     $sql = $sql;
@@ -109,42 +127,23 @@ class SearchingController extends Controller
                 $resultSkripsi = [];
                     foreach ($queryData as $item) {
                         array_push($resultSkripsi, [
+                            'id' => $this->parseData($item->judul, true),
                             'judul' => str_replace('_', ' ',$this->parseData($item->judul, true)) ,
                             'penulis' =>  str_replace('_', ' ',$this->parseData($item->penulis, true)),
                         ]);
-                    }
-        
-        // else if(isset($_POST['reset'])){
-        //         header('Location: /searching');
-        //         $resultSkripsi = [];
-        //         $jumlahSkripsi = 0;
-        //         $resp = 0;
-        //         $sql=[];
-        //     }
-        // else{
-        //         $resultSkripsi = [];
-        //         $jumlahSkripsi = 0;
-        //         $resp = 0;
-        //         $sql=[];
-        //     }
-           
-            //     'list_skripsi' => $resultSkripsi,
-            //     'listPenjurusan' => $resultPenjurusan,
-            //     'listDosen' => $resultDosen,
-            //     'listAngkatan' => $resultAngkatan,
-            //     'jumlahSkripsi' => $jumlahSkripsi,
-            //     'resp' => $resp,
-            //     'sql' => $sql
+                    };
 
-            // ];
-                
             return view('searching',[
-                'title' => 'Searching',
+                'title' => 'Pencarian',
                 'list_skripsi' => $resultSkripsi,
                 'listPenjurusan' => $resultPenjurusan,
                 'listDosen' => $resultDosen,
-                'listAngkatan' => $resultAngkatan,                 
+                'listAngkatan' => $resultAngkatan,      
+                'listTopik' => $resultTopik,              
             ]);
-        
+           
+         } catch (Exception $e){
+                dd($e);
+            }
     }
 }

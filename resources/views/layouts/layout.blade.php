@@ -86,24 +86,24 @@
           >
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
+                <a class="nav-link {{ Request::is('beranda') ? 'active' : '' }}" aria-current="page" href="/beranda">
                   <span data-feather="home" class="align-text-bottom"></span>
-                  Dashboard
+                  Beranda
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('browsing') ? 'active' : '' }}" href="/browsing">
+                <a class="nav-link {{ Request::is('penelusuran') ? 'active' : '' }}" href="/penelusuran">
                   <span data-feather="globe" class="align-text-bottom"></span>
-                  Browsing
+                  Penelusuran
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('searching') ? 'active' : '' }}" href="/searching">
+                <a class="nav-link {{ Request::is('pencarian') ? 'active' : '' }}" href="/pencarian">
                   <span
                     data-feather="search"
                     class="align-text-bottom"
                   ></span>
-                  Searching
+                  Pencarian
                 </a>
               </li>
               <li>

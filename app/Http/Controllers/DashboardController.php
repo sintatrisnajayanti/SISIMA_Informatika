@@ -29,7 +29,7 @@ class DashboardController extends Controller
             }
             
             return view('dashboard',[
-                'title' => 'Dashboard',
+                'title' => 'Beranda',
                 'total' => $totalSkripsi,
                 'list_skripsi' => $daftarSkripsi 
             ]);

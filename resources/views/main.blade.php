@@ -120,9 +120,9 @@
                 </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav" id="nav">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="#about">About</a>
-                <a class="nav-link" href="#features">Features</a>
+                <a class="nav-link active" aria-current="page" href="/">Beranda</a>
+                <a class="nav-link" href="#about">Tentang</a>
+                <a class="nav-link" href="#features">Fitur</a>
                 @if(Auth::user() == null)
                     <a class="nav-link" href="/login"><i class="bi bi-box-arrow-right"></i> Login</a>
                 @else
@@ -153,7 +153,7 @@
         <img src="{{ asset('images/membacabuku.jpg') }}" style="width: 1440px; height:620px"alt="Mahasiswa Membaca Skripsi">
         <div class="carousel-caption d-none d-md-block">
             <h2>Fitur yang tersedia</h2>
-            <p>Pengguna dapat memanfaatkan fitur Browsing dan Searching</p>
+            <p>Pengguna dapat memanfaatkan fitur Penelusuran dan Pencarian</p>
         </div>
         </div>
         <div class="carousel-item">
@@ -176,7 +176,7 @@
     <div class="container pt-4" style="margin-bottom: 100px; margin-top:50px;" id="about">
         <div class="row">
                 <h1 class="sisima fw-bold fst-italic mt-5 mb-3">SISIMA Informatika</b></h1>
-               <p class="deskripsi">SISIMA Informatika (Sistem Informasi Skripsi Mahasiswa Informatika) merupakan sebuah sistem yang dapat memberikan informasi mengenai skripsi mahasiswa dari Program Studi Informatik Universitas Udayana. Fitur yang terdapat dari sistem ini yaitu Browsing (penelusuran) dan Searching (pencarian). Diharapkan sistem ini dapat mempermudah mahasiswa Informatika dalam melakukan pencarian informasi mengenai skripsi mahasiswa seelumnya.</p>
+               <p class="deskripsi">SISIMA Informatika (Sistem Informasi Skripsi Mahasiswa Informatika) merupakan sebuah sistem yang dapat memberikan informasi mengenai skripsi mahasiswa dari Program Studi Informatik Universitas Udayana. Fitur yang terdapat dari sistem ini yaitu Penelusuran (Browsing) dan Pencarian (Searching). Diharapkan sistem ini dapat mempermudah mahasiswa Informatika dalam melakukan pencarian informasi mengenai skripsi mahasiswa seelumnya.</p>
                 <div class="d-flex justify-content-center">
                      <a class="btn btn-primary" href="/login" role="button">Kunjungi</a></div>
                 </div>
@@ -191,9 +191,9 @@
                             <div class="card">
                                 <img src="{{ asset('images/browsing.png') }}" class="card-img-top"  alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><b>Browsing</b></h5>
+                                    <h5 class="card-title"><b>Penelusuran</b></h5>
                                     <p class="card-text">
-                                        Fitur browsing yang memungkinkan pengguna sistem untuk menelusuri informasi mengenai
+                                        Fitur penelusuran yang memungkinkan pengguna sistem untuk menjelajahi informasi mengenai
                                         skripsi mahasiswa yang tersedia melalui salah satu kriteria yang tersedia
                                         </p>
                                     <a href="/login" class="btn btn-primary">Kunjungi</a>
@@ -204,8 +204,8 @@
                             <div class="card">
                                 <img src="{{ asset ('images/searching.png') }}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><b>Searching</b></h5>
-                                    <p class="card-text">Fitur searching merupakan fitur utama dari sistem ini. Dimana pengguna dapat melakukan pencarian 
+                                    <h5 class="card-title"><b>Pencarian</b></h5>
+                                    <p class="card-text">Fitur pencarian merupakan fitur utama dari sistem ini. Dimana pengguna dapat melakukan pencarian 
                                         sebuah informasi skripsi mahasiswa melalui pencarian secara sfesifik dari beberapa kriteria yang tersedia</p>
                                     <a href="/login" class="btn btn-primary">Kunjungi</a>
                                 </div>

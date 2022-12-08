@@ -1,7 +1,8 @@
 @extends('layouts.layout')
 @section('container')
-<div class=" container browsing" style="margin-top: 120px">
+<div class=" container" style="margin-top: 50px">
     <div class="row text-center justify-content-center">
+
         <div class="col-lg-4 mb-3 mx-4 card" data-aos="fade-up" data-aos-delay="400">
             <div class="card-body">
                 <h5 class="card-title">Penjurusan</h5>
@@ -9,6 +10,7 @@
                 <a href="{{ route('daftarpenjurusan') }}" class="btn btn-primary">Tampilkan</a>
             </div>
         </div>
+
         <div class="col-lg-4 mb-3 mx-4 card" data-aos="fade-up" data-aos-delay="400">
             <div class="card-body">
                 <h5 class="card-title">Dosen Pembimbing </h5>
@@ -32,7 +34,17 @@
                 <a href="" class="btn btn-primary">Tampilkan</a>
             </div>
             </div>
+
+
+        <div class="col-lg-4 mb-3 mx-4 card" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-body">
+                <h5 class="card-title">Topik Penelitian</h5>
+                <p>Jumlah :  {{ $data['jumlahtopik'] }} </p>
+                <a href="{{ route('daftartopik') }}" class="btn btn-primary">Tampilkan</a>
+            </div>
+            </div>
         </div>
+
     </div>
 </div>
 @endsection

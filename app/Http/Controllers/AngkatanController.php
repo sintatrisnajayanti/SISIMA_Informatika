@@ -10,7 +10,7 @@ class AngkatanController extends Controller
     public function listAngkatan()
     {
         try {
-        $angkatan = $this->sparql->query('SELECT DISTINCT ?angkatan WHERE { ?mhs a sk:nama_mahasiswa ;sk:mahasiswa_angkatan ?angkatan }');
+        $angkatan = $this->sparql->query('SELECT DISTINCT ?angkatan WHERE { ?mhs a sk:nama_mahasiswa ;sk:mahasiswa_angkatan ?angkatan } ORDER BY (?angkatan)');
         $hasilangkatan = [];
         foreach($angkatan as $item){
             array_push($hasilangkatan, [

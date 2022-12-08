@@ -35,6 +35,9 @@
         <p class="card-text">
             <span>Selesai Penelitian&emsp;&emsp;&ensp;&nbsp; : {{ $detail['selesai'] }}</span>
         </p>
+        <p class="card-text">
+            <span>Metode &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; : {{ $detail['metode'] }}</span>
+        </p>
     </div>
   </div>
   @endforeach

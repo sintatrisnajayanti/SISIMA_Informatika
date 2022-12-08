@@ -22,7 +22,7 @@ public function authenticate(Request $request)
     ]);
     if(Auth::attempt($credentials)){
         $request->session()->regenerate();
-        return redirect()->intended('/dashboard');
+        return redirect()->intended('/beranda');
     }
     return back()->with('loginError', 'Login failed');
 }
