@@ -44,7 +44,9 @@
                         <label class="input-group-text">Jangka Waktu Penelitian</label>
                         <select class="form-select" aria-label="Default select example"id="cariJangkaWaktu" name="cariJangkaWaktu">
                             <option value="">Pilihlah salah satu</option>
-                            
+                            <option value="kurang-dari-setahun">< 1 Tahun</option>
+                            <option value="sama-dengan-setahun">= 1 Tahun</option>
+                            <option value="lebih-dari-setahun">> 1 Tahun</option>
                         </select>
                     </div>
                 </div>    
@@ -68,6 +70,13 @@
         </form>
     </div>
 
+@if(isset ($isEmpty) && $isEmpty == true)
+<div class="card shadow mb-4 mt-4 mb-4">
+    <div class="card-header py-3">
+        <h6 class="font-weight-bold">Belum terdapat pencarian<span></h6>
+    </div>
+</div>
+@else
     @if (isset ($list_skripsi))
         @if(sizeof($list_skripsi) > 0)
         <div class="row">
@@ -109,5 +118,5 @@
             </div>
          @endif
     @endif
-
+ @endif
 @endsection

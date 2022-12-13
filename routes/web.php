@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SearchingController;
 use App\Http\Controllers\PenjurusanController;
+use App\Http\Controllers\JangkaWaktuController;
 use App\Http\Controllers\DetailSkripsiController;
 
 /*
@@ -43,12 +44,14 @@ Route::get('/penjurusan/{penjurusan}', [PenjurusanController::class, 'detailPenj
 Route::get('/dospem', [DospemController::class, 'listDospem'])->name('daftardospem')->middleware('auth');
 Route::get('/dospem/{dosenpembimbing}', [DospemController::class, 'detailDospem'])->name('detaildospem')->middleware('auth');
 
-
 Route::get('/angkatan', [AngkatanController::class, 'listAngkatan'])->name('daftarangkatan')->middleware('auth');
 Route::get('/angkatan/{angkatan}', [AngkatanController::class, 'detailAngkatan'])->name('detailangkatan')->middleware('auth');
 
 Route::get('/topikpermasalahan', [TopikController::class, 'listTopik'])->name('daftartopik')->middleware('auth');
 Route::get('/topikpermasalahan/{topikpermasalahan}', [TopikController::class, 'detailTopik'])->name('detailtopik')->middleware('auth');
+
+Route::get('/jangkawaktu', [JangkaWaktuController::class, 'listJangkaWaktu'])->name('daftarjangkawaktu')->middleware('auth');
+Route::get('/jangkawaktu/{waktu}', [JangkaWaktuController::class, 'detailJangkaWaktu'])->name('detailjangkawaktu')->middleware('auth');
 
 Route::get('/pencarian', [SearchingController::class, 'index'])->name('dropdownData')->middleware('auth');
 Route::post('/pencarian', [SearchingController::class, 'searching'])->name('hasilSearching')->middleware('auth');

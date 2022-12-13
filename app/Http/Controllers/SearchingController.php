@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use EasyRdf\Http\Exception;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SearchingController extends Controller
 {
     public function index ()
@@ -55,6 +57,7 @@ class SearchingController extends Controller
 
     public function searching (Request $request)
     {
+    
         try {
         $penjurusan = $this->sparql->query('SELECT * WHERE {?jalur a sk:konsentrasi_jalur} ORDER BY ?jalur');
         $dosenpembimbing = $this->sparql->query('SELECT * WHERE {?dosen a sk:dosen_pembimbing} ORDER BY ?dosen');
@@ -90,8 +93,18 @@ class SearchingController extends Controller
                 'topik' => $this->parseData($item->topik->getUri())
             ]);
         }       
-
-            $sql = "SELECT * WHERE { ";
+        if ($request->cariJurusan == '' && $request->cariTahun == '' && $request->cariDosenPembimbing == '' && $request->cariJangkaWaktu == '' && $request->cariTopik == '') {
+            return view('searching',[
+                'title' => 'Pencarian',
+                'list_skripsi' => null,
+                'listPenjurusan' => $resultPenjurusan,
+                'listDosen' => $resultDosen,
+                'listAngkatan' => $resultAngkatan,      
+                'listTopik' => $resultTopik,    
+                'isEmpty' => true          
+            ]);
+        }
+            $sql = "SELECT ?penulis ?waktu ?judul WHERE { ";
 
                 if ($request->cariJurusan != '') {
                     $sql = $sql . " ?judul sk:koleksi_dari sk:$request->cariJurusan .  ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. ";
@@ -114,6 +127,21 @@ class SearchingController extends Controller
                 $sql = $sql;
                 }
 
+                if ($request->cariJangkaWaktu != '') {
+                    $sql = $sql . " ?judul sk:selesai_penelitian ?selesaipenelitian . ?judul sk:ditulis ?penulis .
+                    ?judul sk:mulai_penelitian ?mulaipenelitian . ?judul sk:ditulis ?penulis .
+                    bind( (month(?selesaipenelitian)- month(?mulaipenelitian)) + 12 * (year(?selesaipenelitian)- year(?mulaipenelitian)) as ?waktu ) . ";
+                    if ($request->cariJangkaWaktu  == 'kurang-dari-setahun') {
+                        $sql .= 'filter(?waktu < 12)';
+                      } else if ($request->cariJangkaWaktu  == 'sama-dengan-setahun') {
+                        $sql .= 'filter(?waktu = 12)';
+                      } else if ($request->cariJangkaWaktu == 'lebih-dari-setahun') {
+                        $sql .= 'filter(?waktu > 12)';
+                      }
+                }
+                else{
+                $sql = $sql;
+                }
                 
                 if ($request->cariTopik != '') {
                     $sql = $sql . " ?judul sk:memiliki_topik sk:$request->cariTopik .  ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. ";
@@ -139,7 +167,8 @@ class SearchingController extends Controller
                 'listPenjurusan' => $resultPenjurusan,
                 'listDosen' => $resultDosen,
                 'listAngkatan' => $resultAngkatan,      
-                'listTopik' => $resultTopik,              
+                'listTopik' => $resultTopik,    
+                'isEmpty' => false               
             ]);
            
          } catch (Exception $e){

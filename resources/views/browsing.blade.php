@@ -30,8 +30,8 @@
         <div class="col-lg-4 mb-3 mx-4 card" data-aos="fade-up" data-aos-delay="400">
             <div class="card-body">
                 <h5 class="card-title">Jangka Waktu Penelitian</h5>
-                <p>Jumlah :</p>
-                <a href="" class="btn btn-primary">Tampilkan</a>
+                <p>Jumlah : 3</p>
+                <a href="/jangkawaktu" class="btn btn-primary">Tampilkan</a>
             </div>
             </div>
 

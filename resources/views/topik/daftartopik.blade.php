@@ -3,7 +3,7 @@
 <div>
     <a type="button" class="btn btn-primary" href="/penelusuran"><span data-feather="arrow-left" class="align-text-bottom"></span>Back</a>
 </div>
-    <div class="container mt-3">
+    <div class="container" style="margin-top: 80px">
         <div class="row justify-content-center mt-3">
             @foreach ($topikpermasalahan as $item)
                 <div class=" my-3 mx-5" style="width:200px;">

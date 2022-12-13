@@ -13,7 +13,7 @@ class DetailSkripsiController extends Controller
     {
         try{
             {
-                $detailskripsi = $this->sparql->query('SELECT ?judul ?dospem1 ?dospem2 ?mulai ?jurusan ?penulis ?metode ?selesai ?angkatan ?emailp1 ?emailp2 ?nim 
+                $detailskripsi = $this->sparql->query('SELECT ?judul ?dospem1 ?dospem2 ?mulai ?jurusan ?penulis ?metode ?selesai ?angkatan ?emailp1 ?waktu ?emailp2 ?nim
                 WHERE{VALUES ?judul {sk:'.$judul.'}.
                     ?judul sk:ditulis ?penulis .
                     ?judul sk:memiliki_pembimbing1 ?dospem1 .
@@ -26,7 +26,12 @@ class DetailSkripsiController extends Controller
                     ?judul sk:ditulis ?mahasiswa . ?mahasiswa sk:nim_mahasiswa ?nim .
                     ?judul sk:memiliki_pembimbing1 ?dosen . ?dosen sk:email_pembimbing ?emailp1 .
                     ?judul sk:memiliki_pembimbing2 ?dsn . ?dsn sk:email_pembimbing ?emailp2 .
-            }');
+                    ?judul sk:selesai_penelitian ?selesaipenelitian . ?judul sk:mulai_penelitian ?mulaipenelitian .
+                    bind( (month(?selesaipenelitian)- month(?mulaipenelitian)) + 12 * (year(?selesaipenelitian)- year(?mulaipenelitian)) as ?waktu )
+                  }
+                    
+            ');
+
                 $hasildetail=[];
                 foreach ($detailskripsi as $detail) {
                     $startDate = explode("T", str_replace('_', ' ',$this->parseData($detail->mulai, true)))[0];
@@ -37,6 +42,11 @@ class DetailSkripsiController extends Controller
 
                     $endDateTime = DateTime::createFromFormat('Y-m-d', $endDate);
                     $endtDateString = $endDateTime->format('d F Y');
+
+                    $waktu = $detail->waktu->getValue();
+                    $year = floor($waktu / 12);
+                    $month = $waktu % 12;
+                    $jangkaWaktu = "$year Tahun $month Bulan";
 
                     array_push($hasildetail, [
                         'judul' => str_replace('_' , ' ', explode('#', $detail->judul)[1]),
@@ -50,7 +60,9 @@ class DetailSkripsiController extends Controller
                         'metode' => property_exists($detail, 'metode') ? $detail->metode : '-',
                         'emailp1' => $detail->emailp1,
                         'emailp2' => $detail->emailp2,
-                        'nim' => $detail->nim
+                        'nim' => $detail->nim,
+                        'jangkawaktu' => $jangkaWaktu
+
                     ]);
                 }
                 return view('detailskripsi', [
