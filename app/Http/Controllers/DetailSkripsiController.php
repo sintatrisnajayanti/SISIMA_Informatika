@@ -13,13 +13,14 @@ class DetailSkripsiController extends Controller
     {
         try{
             {
-                $detailskripsi = $this->sparql->query('SELECT ?judul ?dospem1 ?dospem2 ?mulai ?jurusan ?penulis ?metode ?selesai ?angkatan ?emailp1 ?waktu ?emailp2 ?nim
+                $detailskripsi = $this->sparql->query('SELECT ?judul ?dospem1 ?dospem2 ?mulai ?jurusan ?penulis ?metode ?selesai ?angkatan ?emailp1 ?waktu ?emailp2 ?nim ?abstrak
                 WHERE{VALUES ?judul {sk:'.$judul.'}.
                     ?judul sk:ditulis ?penulis .
                     ?judul sk:memiliki_pembimbing1 ?dospem1 .
                     ?judul sk:memiliki_pembimbing2 ?dospem2 .
                     ?judul sk:koleksi_dari ?jurusan .
                     OPTIONAL { ?judul sk:penggunaan_metode ?metode }
+                    OPTIONAL {?judul sk:memiliki_abstrak ?abstrak }
                     ?judul sk:mulai_penelitian ?mulai .
                     ?judul sk:selesai_penelitian ?selesai .
                     ?judul sk:ditulis ?mhs . ?mhs sk:mahasiswa_angkatan ?angkatan .
@@ -58,6 +59,7 @@ class DetailSkripsiController extends Controller
                         'penjurusan' =>ucwords(str_replace('_', ' ', explode('#', $detail->jurusan->getUri())[1])),
                         'angkatan' => $detail->angkatan,
                         'metode' => property_exists($detail, 'metode') ? $detail->metode : '-',
+                        'abstrak' => property_exists($detail, 'abstrak') ? $detail->abstrak : '-',
                         'emailp1' => $detail->emailp1,
                         'emailp2' => $detail->emailp2,
                         'nim' => $detail->nim,
@@ -65,6 +67,7 @@ class DetailSkripsiController extends Controller
 
                     ]);
                 }
+            
                 return view('detailskripsi', [
                     "title" => 'Detail Skripsi',
                     "skripsimhs" => $hasildetail

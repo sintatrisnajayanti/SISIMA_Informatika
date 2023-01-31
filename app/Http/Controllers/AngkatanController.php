@@ -31,6 +31,7 @@ class AngkatanController extends Controller
     {
         try {
          $skripsiakt = $this->sparql->query("SELECT * WHERE { ?penulis sk:mahasiswa_angkatan '$angkatan' . ?penulis a sk:nama_mahasiswa ; sk:menulis ?judul. }");
+         $sql = "SELECT * WHERE { ?penulis sk:mahasiswa_angkatan '$angkatan' . ?penulis a sk:nama_mahasiswa ; sk:menulis ?judul. }";
          $detailangkatan= [];
          foreach($skripsiakt as $item){
              array_push($detailangkatan, [
@@ -42,6 +43,8 @@ class AngkatanController extends Controller
          return view('angkatan.detailangkatan',[
             'title' => $angkatan,
             'list_skripsi' => $detailangkatan,
+            'skripsiakt' =>  $skripsiakt ,
+            'sql' => $sql,
         ]);
         } catch (Exception $e){
             dd($e);

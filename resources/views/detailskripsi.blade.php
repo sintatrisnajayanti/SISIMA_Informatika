@@ -3,7 +3,7 @@
 
 @foreach ($skripsimhs as $detail)
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" style="text-align: justify">
         <h3 class="card-title mb-4">{{ $detail['judul'] }}</h3>
         <p class="card-text">
             <span>Nama Mahasiswa&emsp;&emsp;&nbsp;&nbsp;&emsp; : {{ $detail['penulis'] }} </span>
@@ -40,6 +40,9 @@
         </p>
         <p class="card-text">
             <span>Metode &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&emsp; : {{ $detail['metode'] }}</span>
+        </p>
+        <p class="card-text">
+            <span>Abstrak &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&emsp; : {!! $detail['abstrak'] !!}</span>
         </p>
     </div>
   </div>

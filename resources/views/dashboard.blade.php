@@ -15,6 +15,18 @@
         </div>
     </div>
 </div>
+<div class="col-lg-6">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Proses SPARQL</h6>
+        </div>
+        <div class="card-body">
+            <h4 class="small">{{ $sqltotal }}</h4>
+            <h4 class="small">{{ $sql }}</h4>
+        </div>
+    </div>
+  </div>
+  <br>
 <table class="table">
     <thead>
       <tr>

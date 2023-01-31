@@ -193,8 +193,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Penelusuran</b></h5>
                                     <p class="card-text">
-                                        Fitur penelusuran yang memungkinkan pengguna sistem untuk menjelajahi informasi mengenai
-                                        skripsi mahasiswa yang tersedia melalui salah satu kriteria yang tersedia
+                                        Fitur penelusuran (<i>browsing</i>) merupakan fitur yang memungkinkan pengguna menelusuri informasi mengenai skripsi mahasiswa melalui <i>hyperlink </i>kriteria yang tersedia.
                                         </p>
                                     <a href="/login" class="btn btn-primary">Kunjungi</a>
                                 </div>
@@ -205,8 +204,8 @@
                                 <img src="{{ asset ('images/searching.png') }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"><b>Pencarian</b></h5>
-                                    <p class="card-text">Fitur pencarian merupakan fitur utama dari sistem ini. Dimana pengguna dapat melakukan pencarian 
-                                        sebuah informasi skripsi mahasiswa melalui pencarian secara sfesifik dari beberapa kriteria yang tersedia</p>
+                                    <p class="card-text">Fitur pencarian (<i>searching</i>) merupakan fitur yang memungkinankan pengguna dalam mencari informasi skripsi mahasiswa secara lebih spesifik melalui filter kriteria yang tersedia.  
+                                    </p>
                                     <a href="/login" class="btn btn-primary">Kunjungi</a>
                                 </div>
                             </div>

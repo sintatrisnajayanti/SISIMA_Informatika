@@ -17,17 +17,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="input-group mb-3" >
-                        <label class="input-group-text">Mahasiswa Angkatan</label>
-                        <select class="form-select" aria-label="Default select example" id="cariTahun" name="cariTahun">
-                            <option value="">Pilihlah salah satu</option>
-                            @foreach($listAngkatan as $item)
-                                    <option value="{{ $item['id'] }}">{{$item['angkatan']}} </option>
-                                 @endforeach
-                        </select>
-                    </div>
-                </div>
                 <div class="col-md-6">   
                     <div class="input-group mb-3">
                         <label class="input-group-text">Dosen Pembimbing</label>
@@ -35,6 +24,17 @@
                             <option value="">Pilihlah salah satu</option>
                                @foreach($listDosen as $item)
                                     <option value="{{ $item['id'] }}">{{ str_replace('_',' ',$item['dosen'])}} </option>
+                                 @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3" >
+                        <label class="input-group-text">Mahasiswa Angkatan</label>
+                        <select class="form-select" aria-label="Default select example" id="cariTahun" name="cariTahun">
+                            <option value="">Pilihlah salah satu</option>
+                            @foreach($listAngkatan as $item)
+                                    <option value="{{ $item['id'] }}">{{$item['angkatan']}} </option>
                                  @endforeach
                         </select>
                     </div>
@@ -78,6 +78,16 @@
 </div>
 @else
     @if (isset ($list_skripsi))
+    <div class="col-lg-6 mt-4">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Proses SPARQL</h6>
+            </div>
+            <div class="card-body">
+                <h4 class="small">{{ $sql }}</h4>
+            </div>
+        </div>
+    </div>
         @if(sizeof($list_skripsi) > 0)
         <div class="row">
             <div class="col-lg-12 mb-4 mt-4">

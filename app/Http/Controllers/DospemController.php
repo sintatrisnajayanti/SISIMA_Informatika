@@ -32,6 +32,7 @@ class DospemController extends Controller
     {
         try {
          $skripsimhs = $this->sparql->query("SELECT * WHERE { sk:".$dosenpembimbing." sk:memiliki_anak_bimbingan ?penulis .  ?penulis sk:menulis ?judul .}");
+         $sql = "SELECT * WHERE { sk:".$dosenpembimbing." sk:memiliki_anak_bimbingan ?penulis .  ?penulis sk:menulis ?judul .}";
          $detaildospem= [];
          foreach($skripsimhs as $item){
              array_push($detaildospem, [
@@ -43,6 +44,7 @@ class DospemController extends Controller
          return view('dospem.detaildospem',[
             'title' => ucwords(str_replace('_', ' ', $dosenpembimbing)),
             'list_skripsi' => $detaildospem,
+            'sql' => $sql,
         ]);
         } catch (Exception $e){
             dd($e);

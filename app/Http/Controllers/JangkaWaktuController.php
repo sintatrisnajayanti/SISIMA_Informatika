@@ -48,6 +48,7 @@ class JangkaWaktuController extends Controller
          return view('jangkawaktu.detailwaktu',[
             'title' => $waktu,
             'list_skripsi' => $detailwaktu,
+            'sql' => $query,
         ]);
         
         } catch (Exception $e){

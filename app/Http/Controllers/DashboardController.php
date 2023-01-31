@@ -12,7 +12,8 @@ class DashboardController extends Controller
         try {
             $skripsi = $this->sparql->query('SELECT * WHERE { ?judul a sk:judul_skripsi ; sk:ditulis ?penulis }');
             $total = $this->sparql->query(' SELECT (count(?skripsi) as ?jumlahSkripsi) WHERE { ?skripsi a sk:judul_skripsi } ');
-             
+            $sql = "SELECT * WHERE { ?judul a sk:judul_skripsi ; sk:ditulis ?penulis }";
+            $sqltotal = "SELECT (count(?skripsi) as ?jumlahSkripsi) WHERE { ?skripsi a sk:judul_skripsi } ";
             $daftarSkripsi = [];
             $totalSkripsi = 0;
 
@@ -31,7 +32,9 @@ class DashboardController extends Controller
             return view('dashboard',[
                 'title' => 'Beranda',
                 'total' => $totalSkripsi,
-                'list_skripsi' => $daftarSkripsi 
+                'list_skripsi' => $daftarSkripsi ,
+                'sql' => $sql,
+                'sqltotal' => $sqltotal,
             ]);
         } catch (Exception $e){
             dd($e);

@@ -31,6 +31,7 @@ class PenjurusanController extends Controller
     {
         try {
          $getskripsi = $this->sparql->query("SELECT * WHERE { ?judul sk:koleksi_dari sk:".$penjurusan.". ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. }");
+         $sql = "SELECT * WHERE { ?judul sk:koleksi_dari sk:".$penjurusan.". ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. }";
          $detailpenjurusan= [];
          foreach($getskripsi as $item){
              array_push($detailpenjurusan, [
@@ -42,6 +43,7 @@ class PenjurusanController extends Controller
          return view('penjurusan.detailpenjurusan',[
             'title' => ucwords(str_replace('_', ' ', $penjurusan)),
             'list_skripsi' => $detailpenjurusan,
+            'sql' => $sql,
         ]);
         } catch (Exception $e){
             dd($e);

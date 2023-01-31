@@ -31,6 +31,7 @@ class TopikController extends Controller
     {
         try {
          $skripsi = $this->sparql->query("SELECT * WHERE { ?judul sk:memiliki_topik sk:".$topikpermasalahan.". ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. }");
+         $sql = "SELECT * WHERE { ?judul sk:memiliki_topik sk:".$topikpermasalahan.". ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. }";
          $detailtopik= [];
          foreach($skripsi as $item){
              array_push($detailtopik, [
@@ -42,6 +43,7 @@ class TopikController extends Controller
          return view('topik.detailtopik',[
             'title' =>  $topikpermasalahan,
             'list_skripsi' => $detailtopik,
+            'sql' => $sql,
         ]);
         } catch (Exception $e){
             dd($e);

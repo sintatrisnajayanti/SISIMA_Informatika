@@ -104,7 +104,7 @@ class SearchingController extends Controller
                 'isEmpty' => true          
             ]);
         }
-            $sql = "SELECT ?penulis ?waktu ?judul WHERE { ";
+            $sql = "SELECT ?penulis ?judul WHERE { ";
 
                 if ($request->cariJurusan != '') {
                     $sql = $sql . " ?judul sk:koleksi_dari sk:$request->cariJurusan .  ?judul a sk:judul_skripsi ; sk:ditulis ?penulis. ";
@@ -167,7 +167,8 @@ class SearchingController extends Controller
                 'listPenjurusan' => $resultPenjurusan,
                 'listDosen' => $resultDosen,
                 'listAngkatan' => $resultAngkatan,      
-                'listTopik' => $resultTopik,    
+                'listTopik' => $resultTopik, 
+                'sql' => $sql,   
                 'isEmpty' => false               
             ]);
            
