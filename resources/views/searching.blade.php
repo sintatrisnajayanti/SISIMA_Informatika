@@ -99,7 +99,7 @@
                             <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Judul Penelitian</th>
+                                <th scope="col">Judul Skripsi</th>
                                 <th scope="col">Nama Mahasiswa</th>
                                 <th scope="col">Aksi</th>
                             </tr>
